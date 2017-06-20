@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<config>
+		<field-set name="defaults">
+			<label>Default settings</label>
+			<help-text>Default settings will be applied to all galleries if not overridden when setting up gallery.</help-text>
+			<items>
+				<input name="siteName" type="TextLine">
+					<label>Site name</label>
+					<help-text>No help available.</help-text>
+					<occurrences minimum="0" maximum="1"/>
+					<config>
+						<regexp></regexp>
+					</config>
+					<default>MY SITE</default>
+				</input>
+			</items>
+		</item-set>
+	</field-set>
+</config>
+</site>

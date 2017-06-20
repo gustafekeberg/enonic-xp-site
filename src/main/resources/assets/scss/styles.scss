@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+//──────────────────────────────────────────────────────────────────────────────
+// Normalize styles in all browsers
+//──────────────────────────────────────────────────────────────────────────────
+// @import "normalize";
+
+// html {
+//     font-size: 14px;
+// }
+
+@import "../../site/**/*.scss"; // This works thanks to gulp-sass-glob

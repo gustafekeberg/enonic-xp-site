@@ -1,0 +1,13 @@
+<part>
+    <display-name>Hello world part</display-name>
+    <config>
+
+        <input name="helloWorld" type="TextLine">
+            <label>Hello world</label>
+            <help-text>Falls back to "Hello world!" unless you input something.</help-text>
+            <occurrences minimum="0" maximum="1"/>
+            <default>Hello world!</default>
+        </input>
+
+    </config>
+</part>

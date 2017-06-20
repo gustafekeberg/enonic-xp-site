@@ -1,0 +1,285 @@
+@import 'colors';
+@import 'styles';
+
+$screen-small: 768px;
+$font-size-lg: 28pt;
+$font-size-sm: 16pt;
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: $color-bg;
+	color: $color-fg;
+	font-family: "VT323", monospace;
+	font-size: $font-size-lg;
+	padding: 1em 1em 2em;
+
+	@media screen and (max-width: $screen-small)
+	{
+		font-size: $font-size-sm;
+		padding: .25em .25em .5em;
+	}
+}
+
+a {
+	@include a;
+	&:hover {
+		@include a-hover;
+	}
+}
+
+header {
+	.wrapper {
+		padding: .5em 0;
+	}
+
+	h1 {
+		border: 0;
+		font-size: 120%;
+		font-weight: bold;
+		margin: 0;
+		padding: 0;
+
+		&::after {
+			display: none;
+		}
+	}
+}
+
+nav {
+	text-align: center;
+
+	// .wrapper {}
+
+	ul {
+		@include standard-border ($color-fg);
+
+		border: {
+			// top: solid;
+			bottom: solid;
+		}
+		display: block;
+		margin: 0;
+		}
+
+	li {
+		display: inline-block;
+		margin-left: 1em;
+
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		@media screen and (max-width: $screen-small) {
+			margin-left: 0;
+		}
+	}
+
+	a {
+		@include nav-a;
+		&:hover {
+			@include nav-a-hover;
+		}
+
+		+a {
+			padding-left: 1em;
+		}
+	}
+}
+
+.wrapper {
+	margin: auto;
+	max-width: 49.5rem;
+	padding: .5em;
+}
+
+.container {
+	// margin-top: .5em;
+	.content {
+		margin-top: 2em;
+
+		+.content {
+			// margin-top: 3em
+		}
+		// min-height: 50vh;
+		// display: flex;
+		// flex-direction: column;
+		// justify-content: center;
+	}
+
+	// section {}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: normal;
+	position: relative;
+}
+
+h1,
+h2 {
+	@include standard-dashed-underline;
+	text-align: center;
+
+	&::after {
+		display: block;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+}
+
+h1 {
+	padding-bottom: .1em;
+
+	::after {
+		@include standard-dashed-underline ($color-fg);
+		content: '';
+	}
+}
+
+b,
+em,
+i,
+s,
+strong {
+	font-style: normal;
+	font-weight: normal;
+}
+
+// b, strong {}
+
+i,
+em {
+	// border-bottom: 2pt solid #000;
+	// text-decoration: underline;
+	&::before,
+	&::after {
+		content: '*';
+	}
+}
+
+b,
+strong {
+	&::before,
+	&::after {
+		content: '**';
+	}
+}
+
+ol,
+ul {
+	list-style: none;
+	padding-left: 0;
+
+	ol,
+	ul {
+		margin-left: 1.25em;
+	}
+}
+
+ul {
+	> li::before {
+		content: '- ';
+	}
+
+	ul {
+		> li::before {
+			content: '+ ';
+		}
+
+		ul {
+			// scss-lint:disable SelectorDepth
+			// scss-lint:disable NestingDepth
+			> li::before {
+				content: '* ';
+			}
+		}
+	}
+}
+
+
+ol {
+	counter-reset: olcounter;
+
+	> li::before {
+		content: counter(olcounter) '. ';
+		counter-increment: olcounter;
+	}
+}
+
+hr {
+	border: 0;
+	padding: 1em 0 2em;
+
+	&::after {
+		content: '***';
+		display: block;
+		text-align: center;
+	}
+}
+
+form {
+	@mixin input-shadow ($color) {
+		box-shadow: 0 .1em .3em fade-out($color, .55);
+	}
+
+	@mixin border {
+		@include standard-border;
+		border-radius: 0;
+		border-style: solid;
+		margin: .5em 0;
+		padding: .25em;
+	}
+
+	@mixin remove-border-bkg {
+		border: 0;
+		background: none;
+	}
+
+	text-align: center;
+
+	input,
+	textarea {
+		@include input;
+		@include remove-border-bkg;
+		@include border;
+		display: block;
+		width: 100%;
+
+		&:focus {
+			@include input-focus;
+			// @include input-shadow ($color-fg);
+		}
+	}
+
+	textarea {
+		height: 10em;
+	}
+
+	button {
+		@include border;
+		@include button;
+		display: inline-block;
+		min-width: 5em;
+
+		&:hover {
+			@include button-hover;
+			@include input-shadow ($color-fg);
+		}
+	}
+}
+
+blockquote {
+	@include standard-border;
+	border-left-style: solid;
+	margin-left: 0;
+	padding-left: .25em;
+}

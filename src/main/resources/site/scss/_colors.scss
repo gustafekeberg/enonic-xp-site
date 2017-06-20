@@ -1,0 +1,22 @@
+// Base colors
+
+$color-fg: black;
+$color-bg: white;
+$color-a: blue;
+$color-b: gray;
+$color-c: red;
+$color-d: green;
+
+
+// Color definitions
+
+$color-nav-fg: $color-fg;
+$color-nav-bg: transparent;
+
+$color-a-fg: $color-a;
+$color-a-bg: transparent;
+$color-a-hv-fg: $color-bg;
+$color-a-hv-bg: $color-a;
+
+$color-button-hv-fg: $color-fg;
+$color-button-hv-bg: $color-b;

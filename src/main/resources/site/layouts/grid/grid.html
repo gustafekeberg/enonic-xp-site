@@ -1,0 +1,11 @@
+<div data-portal-component-type="layout">
+    <th:block data-th-if="${regions}">
+        <th:block data-th-each="region : ${regionsArray}">
+            <div data-th-attr="data-portal-region=${region.name}">
+                <th:block data-th-each="component : ${region.components}">
+                    <th:block data-portal-component="${component.path}"></th:block>
+                </th:block>
+            </div>
+        </th:block>
+    </th:block>
+</div>

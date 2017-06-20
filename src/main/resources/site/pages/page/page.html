@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html data-th-lang="${lang}">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title data-th-text="${title}"></title>
+        <link
+            data-th-href="${portal.assetUrl({'_path=css/styles.css'})}"
+            rel="stylesheet"
+        />
+        <th:block data-th-if="${watch}">
+            <script src="//localhost:35729/livereload.js?snipver=1" async="" defer=""></script>
+        </th:block>
+    </head>
+    <body>
+        <main data-portal-region="main">
+            <th:block data-th-if="${regions and regions.main}">
+                <th:block data-th-each="component : ${regions.main.components}">
+                    <th:block data-portal-component="${component.path}"></th:block>
+                </th:block>
+            </th:block>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+@mixin transition {
+	transition: background 250ms, color 250ms, outline 250ms;
+	// transition: all 250ms;
+}
+
+@mixin standard-border ($color: $color-fg) {
+	border: {
+		width: .1em;
+		color: $color;
+	}
+}
+@mixin standard-outline ($color) {
+	outline: .1em solid $color;
+}
+
+@mixin standard-dashed-underline ($color: $color-fg) {
+	$width: .1em;
+	border: {
+		bottom-style: dashed;
+		color: $color;
+		width: $width;
+	}
+	padding-bottom: .7em;
+	&:after
+	{
+		padding-bottom: $width;
+	}
+}
+
+@mixin a {
+	color: $color-a-fg;
+	@include transition;
+	@include standard-outline (transparent);
+	background: transparent;
+}
+
+@mixin a-hover {
+	color: $color-bg;
+	background: $color-a-fg;
+	outline: $color-a-fg;
+	@include standard-outline ($color-a-fg);
+	@include transition;
+}
+
+@mixin nav-a {
+	color: $color-nav-fg;
+	text-decoration: none;
+}
+@mixin nav-a-hover {
+	background: $color-fg;
+	@include standard-outline ($color-fg);
+}
+
+@mixin input {
+}
+
+@mixin input-focus {
+	// background: $color-fg;
+	// color: $color-bg;
+	// border-color: $color-c;
+	outline: none;
+	// @include standard-outline ($color-fg);
+	@include standard-border ($color-fg);
+}
+
+@mixin button {
+	background: none;
+	// @include transition;
+}
+
+@mixin button-hover {
+	@include button;
+	background: $color-d;
+	border-color: $color-d;
+	color: $color-bg;
+	cursor: pointer;
+	@include transition;
+}

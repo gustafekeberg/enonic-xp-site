@@ -1,0 +1,10 @@
+<page>
+    <display-name>Page page</display-name>
+    <config>
+    </config>
+    <regions>
+        <region name="nav"/>
+        <region name="main"/>
+        <region name="footer"/>
+    </regions>
+</page>

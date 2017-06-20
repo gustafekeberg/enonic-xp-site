@@ -1,0 +1,19 @@
+<layout>
+    <display-name>Grid layout</display-name>
+    <config>
+    </config>
+    <regions>
+        <region name="1"/>
+        <!--<region name="2"/>
+        <region name="3"/>
+        <region name="4"/>
+        <region name="5"/>
+        <region name="6"/>
+        <region name="7"/>
+        <region name="8"/>
+        <region name="9"/>
+        <region name="10"/>
+        <region name="11"/>
+        <region name="12"/>-->
+    </regions>
+</layout>

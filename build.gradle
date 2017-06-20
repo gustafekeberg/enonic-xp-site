@@ -1,0 +1,105 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven {
+            url 'http://repo.enonic.com/public'
+        }
+    }
+
+    dependencies {
+        classpath "com.enonic.xp:gradle-plugin:${xpVersion}"
+    }
+}
+
+plugins {
+  id "com.moowork.gulp" version "1.0.1"
+}
+
+//──────────────────────────────────────────────────────────────────────────────
+// classname: AppPlugin
+// defines: app, include, compile, runtime, build, jar, sourceSets
+//──────────────────────────────────────────────────────────────────────────────
+
+apply plugin: 'com.enonic.xp.app'
+
+app {
+    name = project.appName
+    displayName = project.displayName
+    vendorName = 'Enonic AS'
+    vendorUrl = 'http://enonic.com'
+}
+
+dependencies {
+    compile "com.enonic.xp:core-api:${xpVersion}"
+    compile "com.enonic.xp:portal-api:${xpVersion}"
+    include "com.enonic.xp:lib-content:${xpVersion}"
+    include "com.enonic.xp:lib-portal:${xpVersion}"
+    include "com.enonic.xp:lib-thymeleaf:${xpVersion}"
+    //include "com.enonic.xp:lib-xslt:${xpVersion}"
+    //include "com.enonic.xp:lib-mustache:${xpVersion}"
+    //include "com.enonic.xp:lib-i18n:${xpVersion}"
+    //include "com.enonic.xp:lib-auth:${xpVersion}"
+    //include "com.enonic.xp:lib-cache:${xpVersion}"
+    //include "com.enonic.xp:lib-context:${xpVersion}"
+    //include "com.enonic.xp:lib-http-client:${xpVersion}"
+    //include "com.enonic.xp:lib-io:${xpVersion}"
+    //include "com.enonic.xp:lib-mail:${xpVersion}"
+    //include "com.enonic.xp:lib-websocket:${xpVersion}"
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+        url 'http://repo.enonic.com/public'
+    }
+}
+
+//──────────────────────────────────────────────────────────────────────────────
+// Gulp
+//──────────────────────────────────────────────────────────────────────────────
+
+task gulp_build(type: GulpTask, dependsOn: 'installGulp') {
+    description = 'Build using gulp'
+    args = ["--color", "--gulpfile", "gulpfile.js", "build"]
+}
+
+task gulp_watch(type: GulpTask, dependsOn: 'installGulp') {
+    description = 'Build using gulp'
+    args = ["--color", "--gulpfile", "gulpfile.js", "watch"]
+}
+
+gulp {
+    // Set the directory where gulpfile.js should be found
+    workDir = file("${project.projectDir}")
+    // Whether colors should output on the terminal
+    colors = true
+}
+
+// processes your package.json before running gulp build
+//gulp_build.dependsOn 'npmInstall'
+
+// runs "gulp build" as part of your gradle build
+build.dependsOn 'gulp_build'
+build.mustRunAfter 'gulp_build'
+
+//──────────────────────────────────────────────────────────────────────────────
+// Gradle
+//──────────────────────────────────────────────────────────────────────────────
+
+tasks.withType(Copy) {
+  includeEmptyDirs = false
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            exclude '*'
+        }
+    }
+}
