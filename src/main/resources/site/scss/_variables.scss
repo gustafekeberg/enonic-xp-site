@@ -11,7 +11,7 @@ $color-d: green;
 // Color definitions
 
 $color-nav-fg: $color-fg;
-$color-nav-bg: transparent;
+$color-nav-bg: $color-bg;
 
 $color-a-fg: $color-a;
 $color-a-bg: transparent;
@@ -20,3 +20,14 @@ $color-a-hv-bg: $color-a;
 
 $color-button-hv-fg: $color-fg;
 $color-button-hv-bg: $color-b;
+
+// Sizes
+
+$default-line-width: .1em;
+
+// Animation durations
+
+$short-duration: 250ms;
+$medium-duration: 500ms;
+$long-duration: 750ms;
+$default-duration: 0ms;

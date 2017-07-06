@@ -1,4 +1,4 @@
-@import 'colors';
+@import 'variables';
 @import 'styles';
 
 $screen-small: 768px;
@@ -49,43 +49,105 @@ header {
 }
 
 nav {
+	// scss-lint:disable SelectorDepth
+	// scss-lint:disable NestingDepth
 	text-align: center;
-
 	// .wrapper {}
 
-	ul {
+	> ul {
 		@include standard-border ($color-fg);
-
 		border: {
 			// top: solid;
 			bottom: solid;
 		}
 		display: block;
 		margin: 0;
+		position: relative;
+
+		li {
+			display: inline-block;
+			margin-left: 1em;
+			position: relative;
+
+			&::before,
+			&::after {
+				content: none;
+			}
+
+			@media screen and (max-width: $screen-small) {
+				margin-left: 0;
+			}
 		}
 
-	li {
-		display: inline-block;
-		margin-left: 1em;
+		ul {
+			// dropdown
+			@include nav-item-hover;
+			@include nav-a-hover;
+			@include transition-delay-hidden;
 
-		&::before,
-		&::after {
-			content: none;
-		}
+			left: 50%;
+			margin: 0;
+			margin-top: $default-line-width * 2;
+			min-width: 100%;
+			padding: 0;
+			position: absolute;
+			// right: 0;
+			text-align: left;
+			top: 100%;
+			transform: translateX(-50%);
+			visibility: hidden;
 
-		@media screen and (max-width: $screen-small) {
-			margin-left: 0;
+			li {
+				display: block;
+				margin: 0;
+				min-width: 100%;
+				padding: 0;
+
+				a {
+					@include nav-a-hover;
+					@include nav-item-hover;
+				}
+
+				&::before,
+				&::after {
+					content: none;
+				}
+			}
 		}
 	}
 
 	a {
-		@include nav-a;
+		// @include nav-a;
+		@include nav-item;
+		white-space: nowrap;
+
+		+a {
+			padding-left: 1em;
+		}
+
 		&:hover {
 			@include nav-a-hover;
 		}
 
-		+a {
-			padding-left: 1em;
+	}
+
+	li:hover {
+		> ul {
+			@include transition-delay-visible;
+			visibility: visible;
+
+			a {
+				background: initial;
+				outline: none;
+			}
+
+			li:hover {
+				background: $color-bg;
+
+				a {
+					color: $color-fg;
+				}
+			}
 		}
 	}
 }
@@ -227,9 +289,6 @@ hr {
 }
 
 form {
-	@mixin input-shadow ($color) {
-		box-shadow: 0 .1em .3em fade-out($color, .55);
-	}
 
 	@mixin border {
 		@include standard-border;

@@ -1,35 +1,31 @@
-@mixin transition {
-	transition: background 250ms, color 250ms, outline 250ms;
-	// transition: all 250ms;
-}
-
 @mixin standard-border ($color: $color-fg) {
 	border: {
-		width: .1em;
 		color: $color;
+		width: $default-line-width;
 	}
 }
+
 @mixin standard-outline ($color) {
-	outline: .1em solid $color;
+	outline: $default-line-width solid $color;
 }
 
 @mixin standard-dashed-underline ($color: $color-fg) {
-	$width: .1em;
+	$width: $default-line-width;
 	border: {
 		bottom-style: dashed;
 		color: $color;
 		width: $width;
 	}
 	padding-bottom: .7em;
-	&:after
-	{
+
+	&::after {
 		padding-bottom: $width;
 	}
 }
 
 @mixin a {
 	color: $color-a-fg;
-	@include transition;
+	@include transition-out;
 	@include standard-outline (transparent);
 	background: transparent;
 }
@@ -39,15 +35,25 @@
 	background: $color-a-fg;
 	outline: $color-a-fg;
 	@include standard-outline ($color-a-fg);
-	@include transition;
+	@include transition-in;
+}
+
+@mixin nav-item {
+	@include nav-a;
+}
+
+@mixin nav-item-hover {
+	color: $color-nav-bg;
+	background: $color-fg;
 }
 
 @mixin nav-a {
 	color: $color-nav-fg;
 	text-decoration: none;
 }
+
 @mixin nav-a-hover {
-	background: $color-fg;
+	@include nav-item-hover;
 	@include standard-outline ($color-fg);
 }
 
@@ -65,7 +71,7 @@
 
 @mixin button {
 	background: none;
-	// @include transition;
+	@include transition-out;
 }
 
 @mixin button-hover {
@@ -74,5 +80,9 @@
 	border-color: $color-d;
 	color: $color-bg;
 	cursor: pointer;
-	@include transition;
+	@include transition-in;
+}
+
+@mixin input-shadow ($color) {
+	// box-shadow: 0 .1em .3em fade-out($color, .55);
 }

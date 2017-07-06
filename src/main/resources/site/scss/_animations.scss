@@ -1,0 +1,24 @@
+@mixin transition-in {
+	transition: all 0ms;
+}
+
+@mixin transition-out {
+	transition: background $default-duration,
+	color $default-duration,
+	outline $default-duration,
+	border $default-duration;
+}
+
+@mixin transition-delay-hidden {
+	// transition: display $short-duration;
+	// visibility: hidden;
+	transition: all $short-duration;
+	z-index: 1000;
+}
+
+@mixin transition-delay-visible {
+	// transition: display $short-duration;
+	// visibility: visible;
+	transition: all $short-duration;
+	z-index: 1000;
+}
