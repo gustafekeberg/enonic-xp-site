@@ -65,6 +65,7 @@ nav {
 		position: relative;
 
 		li {
+			cursor: default;
 			display: inline-block;
 			margin-left: 1em;
 			position: relative;
@@ -87,7 +88,8 @@ nav {
 
 			left: 50%;
 			margin: 0;
-			margin-top: $default-line-width * 2;
+			// margin-top: $default-line-width * 2;
+			margin-top: $default-line-width * 1;
 			min-width: 100%;
 			padding: 0;
 			position: absolute;
@@ -116,7 +118,8 @@ nav {
 		}
 	}
 
-	a {
+	a,
+	li {
 		// @include nav-a;
 		@include nav-item;
 		white-space: nowrap;
