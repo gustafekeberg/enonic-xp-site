@@ -204,7 +204,7 @@ h2 {
 h1 {
 	padding-bottom: .1em;
 
-	::after {
+	&::after {
 		@include standard-dashed-underline ($color-fg);
 		content: '';
 	}
