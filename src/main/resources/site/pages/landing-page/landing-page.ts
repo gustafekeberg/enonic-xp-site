@@ -18,9 +18,11 @@ export default class PagePageController extends PageController {
 
 	get() {
 		this.model.lang = this.content.language;
-		this.model.title = this.siteConfig.siteName;
+		this.model.siteName = this.siteConfig.siteName;
+		this.model.description = this.content.data.description;
 		this.model.displayName = this.content.displayName;
 		this.model.watch = this.request.port == 8889;
+		this.model.mode = this.request.mode;
 		return super.get();
 	}
 

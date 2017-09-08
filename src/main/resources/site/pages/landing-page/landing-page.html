@@ -5,11 +5,11 @@ th:lang="${lang}"
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<title th:text="${title}"></title>
-	<meta name="description" content="" />
+	<title th:text="${siteName}"></title>
+	<meta name="description" th:attr="content=${description}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+	<!--/* <link rel="apple-touch-icon" href="apple-touch-icon.png"> */-->
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -32,7 +32,11 @@ th:lang="${lang}"
 		</div>
 	</header>
 
-	<nav data-portal-region="nav" class="wrapper">
+	<nav
+		data-portal-region="nav"
+		th:remove="${mode == 'edit' ? 'none' : (#lists.isEmpty(regions.nav.components) ? 'all' : 'none')}"
+		class="wrapper"
+	>
 		<th:block
 		 class="nav"
 		th:if="${regions and regions.nav}"
@@ -43,7 +47,11 @@ th:lang="${lang}"
 			</th:block>
 </nav>
 
-<main data-portal-region="main" class="wrapper">
+<main
+	data-portal-region="main"
+	th:remove="${mode == 'edit' ? 'none' : (#lists.isEmpty(regions.main.components) ? 'all' : 'none')}"
+	class="wrapper"
+>
 	<th:block
 	th:if="${regions and regions.main}"
 	class="container"
@@ -56,31 +64,11 @@ th:lang="${lang}"
 	</th:block>
 </main>
 
-<div>
-	<div class="wrapper">
-		<div class="content">
-			<section>
-				<h1>Contact</h1>
-				<p>Channels to get <em>in touch</em>:</p>
-				<ul>
-					<li>Phone: <a href="tel:0123456789">0123456789</a></li>
-					<li>E-mail: <a href="mailto:my@mail.com">my@mail.com</a></li>
-					<li>Mail:<br/>My address<br/>Street<br/>0123 City<br/>Country</a></li>
-				</ul>
-				<hr />
-				<form class="test" action="index.html" method="post">
-					<input type="text" name="name" placeholder="Your name" />
-					<input type="text" name="mail" placeholder="Your e-mail" />
-					<textarea type="text" name="message" placeholder="Your message" ></textarea>
-					<button>Send</button>
-				</form>
-			</section>
-		</div>
-	</div>
-</div>
-
-<footer data-portal-region="footer"
-class="wrapper">
+<footer
+	data-portal-region="footer"
+	class="wrapper"
+	th:remove="${mode == 'edit' ? 'none' : (#lists.isEmpty(regions.footer.components) ? 'all' : 'none')}"
+>
 	<th:block
 	class="container"
 	th:if="${regions and regions.footer}"
@@ -92,8 +80,8 @@ class="wrapper">
 		</th:block>
 	</th:block>
 </footer>
-<!-- <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')</script> -->
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')</script>
 
 </body>
 </html>
