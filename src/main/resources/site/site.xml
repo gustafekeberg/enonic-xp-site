@@ -15,7 +15,6 @@
 					<default>MY SITE</default>
 				</input>
 			</items>
-		</item-set>
-	</field-set>
-</config>
+		</field-set>
+	</config>
 </site>
