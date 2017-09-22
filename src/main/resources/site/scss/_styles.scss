@@ -60,6 +60,13 @@
 @mixin input {
 }
 
+@mixin figure {
+	img {
+		border-radius: .25em;
+		box-shadow: 0 .1em .25em $color-shadow-image;
+	}
+}
+
 @mixin input-focus {
 	// background: $color-fg;
 	// color: $color-bg;

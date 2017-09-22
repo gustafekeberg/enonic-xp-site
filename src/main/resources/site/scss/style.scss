@@ -30,6 +30,10 @@ a {
 	}
 }
 
+figure {
+	@include figure;
+}
+
 header {
 	.wrapper {
 		padding: .5em 0;
@@ -185,7 +189,7 @@ h4,
 h5,
 h6 {
 	font-size: 100%;
-	font-weight: normal;
+	font-weight: bold;
 	position: relative;
 }
 
@@ -207,6 +211,30 @@ h1 {
 	&::after {
 		@include standard-dashed-underline ($color-fg);
 		content: '';
+	}
+}
+
+h3 {
+	&::before {
+		content: '### ';
+	}
+}
+
+h4 {
+	&::before {
+		content: '#### ';
+	}
+}
+
+h5 {
+	&::before {
+		content: '###### ';
+	}
+}
+
+h6 {
+	&::before {
+		content: '####### ';
 	}
 }
 

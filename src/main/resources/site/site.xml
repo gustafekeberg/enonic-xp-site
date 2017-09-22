@@ -3,7 +3,7 @@
 	<config>
 		<field-set name="defaults">
 			<label>Default settings</label>
-			<help-text>Default settings will be applied to all galleries if not overridden when setting up gallery.</help-text>
+			<help-text>Setup site</help-text>
 			<items>
 				<input name="siteName" type="TextLine">
 					<label>Site name</label>
